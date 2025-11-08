@@ -43,18 +43,34 @@ if ($result->num_rows > 0) {
             background: linear-gradient(135deg, #74b9ff, #a29bfe);
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             font-family: 'Poppins', sans-serif;
+            padding: 20px;
+        }
+
+        .main-container {
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            width: 100%;
+            max-width: 900px;
+            overflow: hidden;
         }
 
         /* HEADER */
         header {
-            background: #fff;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            padding: 10px 20px;
+            background: #f8f9fa;
+            padding: 15px 25px;
             display: flex;
             align-items: center;
             justify-content: space-between;
+            border-bottom: 2px solid #eee;
+        }
+
+        header .brand {
+            display: flex;
+            align-items: center;
         }
 
         header img {
@@ -63,14 +79,13 @@ if ($result->num_rows > 0) {
             border-radius: 50%;
         }
 
-        header .brand-name {
+        .brand-name {
             font-weight: bold;
             color: #333;
             font-size: 1.3rem;
-            margin-left: 10px;
+            margin-left: 12px;
         }
 
-        /* LOGOUT BUTTON */
         #logoutBtn {
             background: #e74c3c;
             color: white;
@@ -86,14 +101,9 @@ if ($result->num_rows > 0) {
             background: #c0392b;
         }
 
-        /* BODY CONTAINER */
-        .main-container {
-            background: #fff;
-            border-radius: 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            padding: 40px 20px;
-            margin-top: 40px;
-            margin-bottom: 40px;
+        /* MAIN CONTENT */
+        .content {
+            padding: 40px 25px;
             text-align: center;
         }
 
@@ -106,7 +116,6 @@ if ($result->num_rows > 0) {
             color: #555;
         }
 
-        /* FEATURE BUTTONS */
         .btn-square {
             width: 160px;
             height: 160px;
@@ -135,63 +144,65 @@ if ($result->num_rows > 0) {
 
         /* FOOTER */
         footer {
-            background: rgba(0,0,0,0.3);
-            color: #fff;
+            background: #f8f9fa;
+            border-top: 2px solid #eee;
             text-align: center;
             padding: 12px;
             font-size: 0.95rem;
+            color: #555;
         }
     </style>
 </head>
 
 <body>
+    <div class="main-container">
 
-    <!-- HEADER -->
-    <header>
-        <div class="d-flex align-items-center">
-            <img src="logo.png" alt="BidBack Logo">
-            <span class="brand-name">BidBack</span>
+        <!-- HEADER -->
+        <header>
+            <div class="brand">
+                <img src="logo.png" alt="BidBack Logo">
+                <span class="brand-name">BidBack</span>
+            </div>
+            <button id="logoutBtn" title="Logout">
+                <i class="bi bi-power"></i>
+            </button>
+        </header>
+
+        <!-- MAIN CONTENT -->
+        <div class="content">
+            <div class="welcome-box mb-4">
+                <h2>Welcome, <?php echo $name; ?> 👋</h2>
+                <p>User Login – <strong><?php echo $username; ?></strong></p>
+            </div>
+
+            <div class="d-flex flex-wrap justify-content-center">
+                <button class="btn-square" style="background:#0984e3;" onclick="window.location='report_find_item.php'">
+                    <i class="bi bi-plus-circle"></i>
+                    Report Find Item
+                </button>
+
+                <button class="btn-square" style="background:#00b894;" onclick="window.location='find_lost_item.php'">
+                    <i class="bi bi-search"></i>
+                    Find Lost Item
+                </button>
+
+                <button class="btn-square" style="background:#fdcb6e; color:#2d3436;" onclick="window.location='bidding.php'">
+                    <i class="bi bi-cash-coin"></i>
+                    Bidding
+                </button>
+
+                <button class="btn-square" style="background:#6c5ce7;" onclick="window.location='reports.php'">
+                    <i class="bi bi-file-earmark-text"></i>
+                    Reports
+                </button>
+            </div>
         </div>
 
-        <button id="logoutBtn" title="Logout">
-            <i class="bi bi-power"></i>
-        </button>
-    </header>
-
-    <!-- BODY CONTAINER -->
-    <div class="container main-container">
-        <div class="welcome-box mb-4">
-            <h2>Welcome, <?php echo $name; ?> 👋</h2>
-            <p>User Login – <strong><?php echo $username; ?></strong></p>
-        </div>
-
-        <div class="d-flex flex-wrap justify-content-center">
-            <button class="btn-square" style="background:#0984e3;" onclick="window.location='report_find_item.php'">
-                <i class="bi bi-plus-circle"></i>
-                Report Find Item
-            </button>
-
-            <button class="btn-square" style="background:#00b894;" onclick="window.location='find_lost_item.php'">
-                <i class="bi bi-search"></i>
-                Find Lost Item
-            </button>
-
-            <button class="btn-square" style="background:#fdcb6e; color:#2d3436;" onclick="window.location='bidding.php'">
-                <i class="bi bi-cash-coin"></i>
-                Bidding
-            </button>
-
-            <button class="btn-square" style="background:#6c5ce7;" onclick="window.location='reports.php'">
-                <i class="bi bi-file-earmark-text"></i>
-                Reports
-            </button>
-        </div>
+        <!-- FOOTER -->
+        <footer>
+            © <?php echo date("Y"); ?> BidBack — Smart Lost & Found with Bidding System
+        </footer>
     </div>
-
-    <!-- FOOTER -->
-    <footer>
-        © <?php echo date("Y"); ?> BidBack — Smart Lost & Found with Bidding System
-    </footer>
 
     <!-- JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
